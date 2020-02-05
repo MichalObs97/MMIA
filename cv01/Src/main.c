@@ -18,7 +18,7 @@ int main(void)
 	uint32_t index;
 	//uint8_t pole[32] = {1,0,1,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0};
 	uint32_t sekvence = 0b10101001110111011100101010000000;
-	uint32_t first;
+	//uint32_t first;
 
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
 	GPIOA->MODER |= GPIO_MODER_MODER5_0;
@@ -41,10 +41,7 @@ int main(void)
 			else {
 				GPIOA->BRR = (1<<5);   //reset
 			}
-
 			for (volatile uint32_t i = 0; i < 100000; i++) {}
 		}
 	}
-
-
 }
