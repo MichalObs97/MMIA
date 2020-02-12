@@ -68,14 +68,14 @@ void blikac(void)
 
 void tlacitka(void)
 {
-
-  static uint32_t old_s2;
+  //static uint32_t old_s2;
   static uint32_t old_s1;
   static uint32_t off_time;
   static uint32_t delay_1;
   static uint32_t delay_2;
-  uint32_t new_s2 = GPIOC->IDR & (1<<0);
+  //uint32_t new_s2 = GPIOC->IDR & (1<<0);
   uint32_t new_s1 = GPIOC->IDR & (1<<1);
+
   if (Tick > delay_1 + PIN_READ_TIME_DEBOUNCE)
   {
 	  static uint16_t debounce = 0xFFFF;
@@ -91,12 +91,12 @@ void tlacitka(void)
     if (Tick > delay_2 + PIN_READ_TIME)
     {
 
-    //TLACITKO S2
-	  if (old_s2 && !new_s2) { // falling edge
-		off_time = Tick + LED_TIME_SHORT;
-		GPIOB->BSRR = (1<<0);
-	 }
-     old_s2 = new_s2;
+//    TLACITKO S2
+//	  if (old_s2 && !new_s2) { // falling edge
+//		off_time = Tick + LED_TIME_SHORT;
+//		GPIOB->BSRR = (1<<0);
+//	 }
+//     old_s2 = new_s2;
 
     //TLACITKO S1
  	  if (old_s1 && !new_s1) { // falling edge
