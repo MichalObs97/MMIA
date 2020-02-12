@@ -12,7 +12,8 @@
 #endif
 
 #include "stm32f0xx.h"
-#define PIN_READ_TIME 1000
+#define PIN_READ_TIME 40
+#define PIN_READ_TIME_DEBOUNCE 5
 #define LED_TIME_BLINK 300
 #define LED_TIME_SHORT 100
 #define LED_TIME_LONG 1000
@@ -67,30 +68,48 @@ void blikac(void)
 
 void tlacitka(void)
 {
-//static uint16_t debounce = 0xFFFF;
-static uint32_t old_s2;
-static uint32_t old_s1;
-static uint32_t off_time;
-static uint32_t delay;
-uint32_t new_s2 = GPIOC->IDR & (1<<0);
-uint32_t new_s1 = GPIOC->IDR & (1<<1);
-if (Tick > delay + PIN_READ_TIME) {
-//TLACITKO S2
-	if (old_s2 && !new_s2) { // falling edge
+
+  static uint32_t old_s2;
+  static uint32_t old_s1;
+  static uint32_t off_time;
+  static uint32_t delay_1;
+  static uint32_t delay_2;
+  uint32_t new_s2 = GPIOC->IDR & (1<<0);
+  uint32_t new_s1 = GPIOC->IDR & (1<<1);
+  if (Tick > delay_1 + PIN_READ_TIME_DEBOUNCE)
+  {
+	  static uint16_t debounce = 0xFFFF;
+      debounce<<=1;
+      if (GPIOC->IDR & (1<<0)) {debounce |= 0x0001;}
+      if (debounce == 0x8000)
+      {
+    	  off_time = Tick + LED_TIME_SHORT;
+    	  GPIOB->BSRR = (1<<0);
+      }
+      delay_1 = Tick;
+  }
+    if (Tick > delay_2 + PIN_READ_TIME)
+    {
+
+    //TLACITKO S2
+	  if (old_s2 && !new_s2) { // falling edge
 		off_time = Tick + LED_TIME_SHORT;
 		GPIOB->BSRR = (1<<0);
 	 }
-  old_s2 = new_s2;
+     old_s2 = new_s2;
 
-//TLACITKO S1
- 	 if (old_s1 && !new_s1) { // falling edge
+    //TLACITKO S1
+ 	  if (old_s1 && !new_s1) { // falling edge
  	 	off_time = Tick + LED_TIME_LONG;
  	 	GPIOB->BSRR = (1<<0);
- 	 }
-   old_s1 = new_s1;
-}
- 	 if (Tick > off_time) {
- 	 	 GPIOB->BRR = (1<<0);
- 	 	 }
+ 	  }
+    old_s1 = new_s1;
+    }
+    delay_2 = Tick;
+
+    if (Tick > off_time)
+      {
+ 	   GPIOB->BRR = (1<<0);
+ 	  }
 
 }
