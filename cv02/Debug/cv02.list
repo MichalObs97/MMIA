@@ -316,9 +316,9 @@ int main(void)
  800027c:	60da      	str	r2, [r3, #12]
 	EXTI->FTSR |= EXTI_FTSR_TR0; // trigger on falling edge
 	NVIC_EnableIRQ(EXTI0_1_IRQn); // enable EXTI0_1
-*/
+	 */
 	for (;;)
-		{
+	{
 		blikac();
  800027e:	f000 f82f 	bl	80002e0 <blikac>
 		tlacitka();
@@ -330,7 +330,7 @@ int main(void)
  8000290:	48000800 	.word	0x48000800
 
 08000294 <EXTI0_1_IRQHandler>:
-		}
+	}
 }
 
 void EXTI0_1_IRQHandler(void)
