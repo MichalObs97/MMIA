@@ -51,7 +51,9 @@ ADC_HandleTypeDef hadc;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+static volatile uint32_t raw_pot;
+static volatile uint32_t raw_temp;
+static volatile uint32_t raw_volt;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,9 +67,7 @@ static void MX_ADC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static volatile uint32_t raw_pot;
-static volatile uint32_t raw_temp;
-static volatile uint32_t raw_volt;
+
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	static uint32_t channel;
@@ -127,8 +127,8 @@ int main(void)
   MX_USART2_UART_Init();
   MX_ADC_Init();
   /* USER CODE BEGIN 2 */
-  HAL_ADCEx_Calibration_Start(&hadc);
   sct_init();
+  HAL_ADCEx_Calibration_Start(&hadc);
   HAL_ADC_Start_IT(&hadc);
 
   /* USER CODE END 2 */
@@ -144,8 +144,17 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  static enum { SHOW_POT, SHOW_VOLT, SHOW_TEMP } state = SHOW_POT;
 	  static uint32_t tick;
-	  if (HAL_GPIO_ReadPin(S2_GPIO_Port, S2_Pin) == 0) {state = SHOW_TEMP; tick = HAL_GetTick();}
-	  if (HAL_GPIO_ReadPin(S1_GPIO_Port, S1_Pin) == 0) {state = SHOW_VOLT; tick = HAL_GetTick();}
+	  if (HAL_GPIO_ReadPin(S2_GPIO_Port, S2_Pin) == 0)
+	  {
+		  state = SHOW_TEMP;
+		  tick = HAL_GetTick();
+	  }
+
+	  if (HAL_GPIO_ReadPin(S1_GPIO_Port, S1_Pin) == 0)
+	  {
+		  state = SHOW_VOLT;
+		  tick = HAL_GetTick();
+	  }
 
 	  if (state == SHOW_POT)
 	  {
@@ -157,7 +166,7 @@ int main(void)
 		  uint32_t voltage = 330 * (*VREFINT_CAL_ADDR) / raw_volt;
 		  sct_value(voltage,0);
 
-		  if (HAL_GetTick()>tick+1000) state=SHOW_POT;
+		  if (HAL_GetTick()>tick + 1000) state=SHOW_POT;
 	  }
 	  else if (state == SHOW_TEMP)
 	  {
@@ -167,7 +176,7 @@ int main(void)
 		  temperature = temperature + 30;
 		  sct_value(temperature,0);
 
-		  if (HAL_GetTick()>tick+1000) state=SHOW_POT;
+		  if (HAL_GetTick()>tick + 1000) state=SHOW_POT;
 	  }
   }
   /* USER CODE END 3 */
