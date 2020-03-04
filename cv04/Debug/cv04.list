@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_macro  0000bdff  00000000  00000000  00028b18  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00006a8d  00000000  00000000  00034917  2**0
+ 17 .debug_line   00006a83  00000000  00000000  00034917  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000436a7  00000000  00000000  0003b3a4  2**0
+ 18 .debug_str    000436a7  00000000  00000000  0003b39a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0007ea4b  2**0
+ 19 .comment      0000007b  00000000  00000000  0007ea41  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001700  00000000  00000000  0007eac8  2**2
+ 20 .debug_frame  00001700  00000000  00000000  0007eabc  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -465,10 +465,10 @@ Disassembly of section .text:
  80003f2:	46c0      	nop			; (mov r8, r8)
 
 080003f4 <HAL_ADC_ConvCpltCallback>:
+
+/* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-static volatile uint32_t raw_pot;
-static volatile uint32_t raw_temp;
-static volatile uint32_t raw_volt;
+
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
  80003f4:	b580      	push	{r7, lr}
@@ -616,12 +616,12 @@ int main(void)
   MX_ADC_Init();
  80004c2:	f000 f909 	bl	80006d8 <MX_ADC_Init>
   /* USER CODE BEGIN 2 */
-  HAL_ADCEx_Calibration_Start(&hadc);
- 80004c6:	4b52      	ldr	r3, [pc, #328]	; (8000610 <main+0x164>)
- 80004c8:	0018      	movs	r0, r3
- 80004ca:	f001 f895 	bl	80015f8 <HAL_ADCEx_Calibration_Start>
   sct_init();
- 80004ce:	f000 fa55 	bl	800097c <sct_init>
+ 80004c6:	f000 fa59 	bl	800097c <sct_init>
+  HAL_ADCEx_Calibration_Start(&hadc);
+ 80004ca:	4b51      	ldr	r3, [pc, #324]	; (8000610 <main+0x164>)
+ 80004cc:	0018      	movs	r0, r3
+ 80004ce:	f001 f893 	bl	80015f8 <HAL_ADCEx_Calibration_Start>
   HAL_ADC_Start_IT(&hadc);
  80004d2:	4b4f      	ldr	r3, [pc, #316]	; (8000610 <main+0x164>)
  80004d4:	0018      	movs	r0, r3
@@ -631,34 +631,43 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  static enum { SHOW_POT, SHOW_VOLT, SHOW_TEMP } state = SHOW_POT;
 	  static uint32_t tick;
-	  if (HAL_GPIO_ReadPin(S2_GPIO_Port, S2_Pin) == 0) {state = SHOW_TEMP; tick = HAL_GetTick();}
+	  if (HAL_GPIO_ReadPin(S2_GPIO_Port, S2_Pin) == 0)
  80004da:	4b4e      	ldr	r3, [pc, #312]	; (8000614 <main+0x168>)
  80004dc:	2101      	movs	r1, #1
  80004de:	0018      	movs	r0, r3
  80004e0:	f001 fb76 	bl	8001bd0 <HAL_GPIO_ReadPin>
  80004e4:	1e03      	subs	r3, r0, #0
  80004e6:	d107      	bne.n	80004f8 <main+0x4c>
+	  {
+		  state = SHOW_TEMP;
  80004e8:	4b4b      	ldr	r3, [pc, #300]	; (8000618 <main+0x16c>)
  80004ea:	2202      	movs	r2, #2
  80004ec:	701a      	strb	r2, [r3, #0]
+		  tick = HAL_GetTick();
  80004ee:	f000 fc5f 	bl	8000db0 <HAL_GetTick>
  80004f2:	0002      	movs	r2, r0
  80004f4:	4b49      	ldr	r3, [pc, #292]	; (800061c <main+0x170>)
  80004f6:	601a      	str	r2, [r3, #0]
-	  if (HAL_GPIO_ReadPin(S1_GPIO_Port, S1_Pin) == 0) {state = SHOW_VOLT; tick = HAL_GetTick();}
+	  }
+
+	  if (HAL_GPIO_ReadPin(S1_GPIO_Port, S1_Pin) == 0)
  80004f8:	4b46      	ldr	r3, [pc, #280]	; (8000614 <main+0x168>)
  80004fa:	2102      	movs	r1, #2
  80004fc:	0018      	movs	r0, r3
  80004fe:	f001 fb67 	bl	8001bd0 <HAL_GPIO_ReadPin>
  8000502:	1e03      	subs	r3, r0, #0
  8000504:	d107      	bne.n	8000516 <main+0x6a>
+	  {
+		  state = SHOW_VOLT;
  8000506:	4b44      	ldr	r3, [pc, #272]	; (8000618 <main+0x16c>)
  8000508:	2201      	movs	r2, #1
  800050a:	701a      	strb	r2, [r3, #0]
+		  tick = HAL_GetTick();
  800050c:	f000 fc50 	bl	8000db0 <HAL_GetTick>
  8000510:	0002      	movs	r2, r0
  8000512:	4b42      	ldr	r3, [pc, #264]	; (800061c <main+0x170>)
  8000514:	601a      	str	r2, [r3, #0]
+	  }
 
 	  if (state == SHOW_POT)
  8000516:	4b40      	ldr	r3, [pc, #256]	; (8000618 <main+0x16c>)
@@ -722,7 +731,7 @@ int main(void)
  8000580:	0018      	movs	r0, r3
  8000582:	f000 fa4d 	bl	8000a20 <sct_value>
 
-		  if (HAL_GetTick()>tick+1000) state=SHOW_POT;
+		  if (HAL_GetTick()>tick + 1000) state=SHOW_POT;
  8000586:	f000 fc13 	bl	8000db0 <HAL_GetTick>
  800058a:	0002      	movs	r2, r0
  800058c:	4b23      	ldr	r3, [pc, #140]	; (800061c <main+0x170>)
@@ -781,7 +790,7 @@ int main(void)
  80005e8:	0018      	movs	r0, r3
  80005ea:	f000 fa19 	bl	8000a20 <sct_value>
 
-		  if (HAL_GetTick()>tick+1000) state=SHOW_POT;
+		  if (HAL_GetTick()>tick + 1000) state=SHOW_POT;
  80005ee:	f000 fbdf 	bl	8000db0 <HAL_GetTick>
  80005f2:	0002      	movs	r2, r0
  80005f4:	4b09      	ldr	r3, [pc, #36]	; (800061c <main+0x170>)

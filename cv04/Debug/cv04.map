@@ -3499,20 +3499,20 @@ OUTPUT(cv04.elf elf32-littlearm)
  .debug_macro   0x000000000000ba60      0x1ca Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.o
  .debug_macro   0x000000000000bc2a      0x1d5 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.o
 
-.debug_line     0x0000000000000000     0x6a8d
- .debug_line    0x0000000000000000      0x7bd Core/Src/main.o
- .debug_line    0x00000000000007bd      0x6f9 Core/Src/sct.o
- .debug_line    0x0000000000000eb6      0x70f Core/Src/stm32f0xx_hal_msp.o
- .debug_line    0x00000000000015c5      0x716 Core/Src/stm32f0xx_it.o
- .debug_line    0x0000000000001cdb      0x6ca Core/Src/system_stm32f0xx.o
- .debug_line    0x00000000000023a5       0x89 Core/Startup/startup_stm32f030r8tx.o
- .debug_line    0x000000000000242e      0x866 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.o
- .debug_line    0x0000000000002c94      0xc25 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.o
- .debug_line    0x00000000000038b9      0x706 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc_ex.o
- .debug_line    0x0000000000003fbf      0x87e Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.o
- .debug_line    0x000000000000483d      0x82b Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_gpio.o
- .debug_line    0x0000000000005068      0x927 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.o
- .debug_line    0x000000000000598f     0x10fe Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.o
+.debug_line     0x0000000000000000     0x6a83
+ .debug_line    0x0000000000000000      0x7b3 Core/Src/main.o
+ .debug_line    0x00000000000007b3      0x6f9 Core/Src/sct.o
+ .debug_line    0x0000000000000eac      0x70f Core/Src/stm32f0xx_hal_msp.o
+ .debug_line    0x00000000000015bb      0x716 Core/Src/stm32f0xx_it.o
+ .debug_line    0x0000000000001cd1      0x6ca Core/Src/system_stm32f0xx.o
+ .debug_line    0x000000000000239b       0x89 Core/Startup/startup_stm32f030r8tx.o
+ .debug_line    0x0000000000002424      0x866 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.o
+ .debug_line    0x0000000000002c8a      0xc25 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.o
+ .debug_line    0x00000000000038af      0x706 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc_ex.o
+ .debug_line    0x0000000000003fb5      0x87e Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.o
+ .debug_line    0x0000000000004833      0x82b Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_gpio.o
+ .debug_line    0x000000000000505e      0x927 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.o
+ .debug_line    0x0000000000005985     0x10fe Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.o
 
 .debug_str      0x0000000000000000    0x436a7
  .debug_str     0x0000000000000000    0x41e0f Core/Src/main.o
