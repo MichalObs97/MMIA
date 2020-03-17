@@ -68,7 +68,7 @@ int16_t reading_DS18B20 (void)
 	int16_t temp;
 	OWConvertAll();
 	HAL_Delay(CONVERT_T_DELAY);
-	if (OWReadTemperature(&temp)!=0) // OK
+	if (OWReadTemperature(&temp) != 0)
 	{
 		uint8_t i = temp%10;
 
@@ -152,9 +152,12 @@ int main(void)
 		if (state == SHOW_DS18B20) //S2
 		{
 
-			if (temp_18b20!=reading_ERROR) sct_value(temp_18b20,0);
-			else sct_value(0,8);
+			if (temp_18b20 == reading_ERROR) sct_value(0,0);
+			else
+			{
+			sct_value(temp_18b20,0);
 			HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,1);
+			}
 
 			if (HAL_GetTick()>tick+reading) state=SHOW_NULL;
 

@@ -1228,7 +1228,7 @@ int16_t reading_DS18B20 (void)
  800086a:	4b1f      	ldr	r3, [pc, #124]	; (80008e8 <reading_DS18B20+0x88>)
  800086c:	0018      	movs	r0, r3
  800086e:	f000 fc05 	bl	800107c <HAL_Delay>
-	if (OWReadTemperature(&temp)!=0) // OK
+	if (OWReadTemperature(&temp) != 0)
  8000872:	1d3b      	adds	r3, r7, #4
  8000874:	0018      	movs	r0, r3
  8000876:	f7ff ff8b 	bl	8000790 <OWReadTemperature>
@@ -1406,23 +1406,25 @@ int main(void)
  8000962:	d126      	bne.n	80009b2 <main+0xc6>
 		{
 
-			if (temp_18b20!=reading_ERROR) sct_value(temp_18b20,0);
+			if (temp_18b20 == reading_ERROR) sct_value(0,8);
  8000964:	1cbb      	adds	r3, r7, #2
  8000966:	2200      	movs	r2, #0
  8000968:	5e9a      	ldrsh	r2, [r3, r2]
  800096a:	23fa      	movs	r3, #250	; 0xfa
  800096c:	009b      	lsls	r3, r3, #2
  800096e:	429a      	cmp	r2, r3
- 8000970:	d006      	beq.n	8000980 <main+0x94>
- 8000972:	1cbb      	adds	r3, r7, #2
- 8000974:	881b      	ldrh	r3, [r3, #0]
- 8000976:	2100      	movs	r1, #0
- 8000978:	0018      	movs	r0, r3
- 800097a:	f000 f9f9 	bl	8000d70 <sct_value>
- 800097e:	e003      	b.n	8000988 <main+0x9c>
-			else sct_value(0,8);
- 8000980:	2108      	movs	r1, #8
- 8000982:	2000      	movs	r0, #0
+ 8000970:	d104      	bne.n	800097c <main+0x90>
+ 8000972:	2108      	movs	r1, #8
+ 8000974:	2000      	movs	r0, #0
+ 8000976:	f000 f9fb 	bl	8000d70 <sct_value>
+ 800097a:	e00c      	b.n	8000996 <main+0xaa>
+			else
+			{
+			sct_value(temp_18b20,0);
+ 800097c:	1cbb      	adds	r3, r7, #2
+ 800097e:	881b      	ldrh	r3, [r3, #0]
+ 8000980:	2100      	movs	r1, #0
+ 8000982:	0018      	movs	r0, r3
  8000984:	f000 f9f4 	bl	8000d70 <sct_value>
 			HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,1);
  8000988:	2390      	movs	r3, #144	; 0x90
@@ -1431,6 +1433,7 @@ int main(void)
  800098e:	2110      	movs	r1, #16
  8000990:	0018      	movs	r0, r3
  8000992:	f001 fa80 	bl	8001e96 <HAL_GPIO_WritePin>
+			}
 
 			if (HAL_GetTick()>tick+reading) state=SHOW_NULL;
  8000996:	f000 fb67 	bl	8001068 <HAL_GetTick>
