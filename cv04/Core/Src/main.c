@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "stm32f0xx.h"
 #include "sct.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
