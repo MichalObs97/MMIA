@@ -3,7 +3,7 @@ M = csvread(filename);
 R = M(:,2);
 t = M(:,1);
 
-ADCvalue = 1023.*(R./(R+10))
+ADCvalue = (R./(R+10)).*1023
 
 plot(ADCvalue,t);
 p=polyfit(ADCvalue,t,10);
