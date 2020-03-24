@@ -1,6 +1,0 @@
-main.c:66:9:reading_DS18B20	16	static
-main.c:93:5:main	24	static
-main.c:189:6:SystemClock_Config	80	static
-main.c:225:13:MX_ADC_Init	24	static
-main.c:277:13:MX_GPIO_Init	48	static
-main.c:335:6:Error_Handler	8	static
