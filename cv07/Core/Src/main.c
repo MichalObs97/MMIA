@@ -406,14 +406,13 @@ void StartVisualTask(void const * argument)
 	for(;;)
 	{
 		if (xQueueReceive(xVisualQueueHandle, &msg, portMAX_DELAY))
-		{ // LED2 -> msg >200
-			if (msg > 200)
+		{
+			if (msg > 200) //LED2
 			{
 				HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
 				HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 1);
 			}
-			//LED1 -> msg<-200
-			else if (msg < -200)
+			else if (msg < -200)  //LED1
 			{
 				HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 0);
 				HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);

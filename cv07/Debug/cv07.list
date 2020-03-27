@@ -1859,7 +1859,7 @@ void StartAcceleroTask(void const * argument)
  8000b8e:	429a      	cmp	r2, r3
  8000b90:	d3ea      	bcc.n	8000b68 <StartAcceleroTask+0x50>
 		}
-		osDelay(50);// delay 50ms
+		osDelay(50);
  8000b92:	2032      	movs	r0, #50	; 0x32
  8000b94:	f002 ff7c 	bl	8003a90 <osDelay>
 		i++;
@@ -1877,7 +1877,7 @@ void StartAcceleroTask(void const * argument)
  8000bac:	2300      	movs	r3, #0
  8000bae:	2200      	movs	r2, #0
  8000bb0:	f003 f94b 	bl	8003e4a <xQueueGenericSend>
-		if (i==20) // co 1s printf
+		if (i==20)
  8000bb4:	193b      	adds	r3, r7, r4
  8000bb6:	781b      	ldrb	r3, [r3, #0]
  8000bb8:	2b14      	cmp	r3, #20
