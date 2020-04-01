@@ -72,6 +72,8 @@ void Error_Handler(void);
 #define Row4_GPIO_Port GPIOF
 #define Row2_Pin GPIO_PIN_9
 #define Row2_GPIO_Port GPIOF
+#define LED1_Pin GPIO_PIN_0
+#define LED1_GPIO_Port GPIOB
 #define Row1_Pin GPIO_PIN_1
 #define Row1_GPIO_Port GPIOG
 /* USER CODE BEGIN Private defines */
