@@ -33,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define TIMEOUT 2000
+#define TIMEOUT 5000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -47,6 +47,7 @@ TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN PV */
 static volatile int key = -1;
 static const uint8_t code[5] = { 7, 9, 3, 2, 12 };
+static uint8_t NMBR_pressed[5];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,21 +107,20 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		static uint8_t NMBR_pressed[5] = {0, 0, 0, 0, 0};
 		uint8_t i = 0, right_combination = 0;
 		uint32_t delay = 0;
-		if (key != -1)
+		if (key != -1)                                               //stlacenie tlacitka
 		{
 			delay = HAL_GetTick();
 			NMBR_pressed[i] = key;
 			printf("Stlacene cislo: %d\n", key);
 
-			if (NMBR_pressed[i] == code[i])
+			if (NMBR_pressed[i] == code[i])                          //postupna kontrola kodu
 			{
 				right_combination++;
 				printf("Spravne cislo kodu \n");
 			}
-			else
+			else                                                     //zla kombinacia
 			{
 				i = 0;
 				right_combination = 0;
@@ -133,13 +133,13 @@ int main(void)
 			{
 				if (right_combination == 5)
 				{
-					printf("Spravna kombinacia \n");
+					printf("Spravna kombinacia \n");                 //spravna kombinacia
 					HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
 				}
 				HAL_Delay(5000);
-				i = 0;
+				i = 0;                                               //nulovanie do povodneho stavu
 				right_combination = 0;
-				HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
 				printf("Nulovanie \n");
 
 			}
@@ -147,7 +147,7 @@ int main(void)
 		}
 
 
-		if (HAL_GetTick()-delay > TIMEOUT)
+		if (HAL_GetTick()-delay > TIMEOUT)                           //TIMEOUT 5 sekund nestlacenia
 		{
 			printf("Time out\n");
 			i = 0;

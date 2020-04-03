@@ -3230,7 +3230,7 @@ LOAD d:/program files (x86)/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32
  *(.bss)
  .bss           0x0000000020000074       0x1c d:/program files (x86)/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
  *(.bss*)
- .bss.NMBR_pressed.9025
+ .bss.NMBR_pressed
                 0x0000000020000090        0x5 Core/Src/main.o
  *fill*         0x0000000020000095        0x3 
  .bss.row.9053  0x0000000020000098        0x4 Core/Src/main.o

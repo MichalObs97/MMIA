@@ -523,11 +523,11 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim2);
  800060e:	4834      	ldr	r0, [pc, #208]	; (80006e0 <main+0xe8>)
  8000610:	f001 fb7f 	bl	8001d12 <HAL_TIM_Base_Start_IT>
+	{
 
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		static uint8_t NMBR_pressed[5] = {0, 0, 0, 0, 0};
 		uint8_t i = 0, right_combination = 0;
  8000614:	2300      	movs	r3, #0
  8000616:	71fb      	strb	r3, [r7, #7]
