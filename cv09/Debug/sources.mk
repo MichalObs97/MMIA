@@ -19,8 +19,6 @@ OBJCOPY_BIN :=
 SUBDIRS := \
 Core/Src \
 Core/Startup \
-Drivers/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src \
-Drivers/Middlewares/ST/STM32_USB_Device_Library/Core/Src \
 Drivers/STM32F4xx_HAL_Driver/Src \
 Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src \

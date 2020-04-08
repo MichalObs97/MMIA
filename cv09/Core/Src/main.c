@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <usbd_hid.h>
+#include "usbd_hid.h"
 #include <math.h>
 #include <stdbool.h>
 /* USER CODE END Includes */
@@ -56,6 +56,8 @@ static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 extern USBD_HandleTypeDef hUsbDeviceFS;
+void step(int8_t x, int8_t y, _Bool btn);
+void circle(uint16_t radius);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -65,8 +67,7 @@ void step(int8_t x, int8_t y, _Bool btn)
 {
 	uint8_t buff[4];
 	buff[0] = 0x01;
-	if (btn)
-			buff[0] = 0x01;
+	if (btn) buff[0] = 0x01;
 	buff[1] = x;
 	buff[2] = y;
 	buff[3] = 0;
