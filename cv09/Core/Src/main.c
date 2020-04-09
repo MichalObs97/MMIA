@@ -66,11 +66,12 @@ void circle(uint16_t radius);
 void step(int8_t x, int8_t y, _Bool btn)
 {
 	uint8_t buff[4];
-	buff[0] = 0x01;
-	if (btn) buff[0] = 0x01;
-	buff[1] = x;
-	buff[2] = y;
-	buff[3] = 0;
+	buff[0] = 0x02;
+	if (btn) buff[1] = 0x01;
+	else     buff[1] = 0x00;
+	buff[2] = x;
+	buff[3] = y;
+	buff[4] = 0;
 	USBD_HID_SendReport(&hUsbDeviceFS, buff, sizeof(buff));
 	HAL_Delay(USBD_HID_GetPollingInterval(&hUsbDeviceFS));
 }
@@ -96,7 +97,7 @@ void circle(uint16_t radius)
 	}
 }
 
-//bonus
+//BONUSOVA ULOHA
 void keyboard(uint8_t key_1, uint8_t key_2)
 {
 	uint8_t buff[9];
@@ -122,6 +123,7 @@ void keyboard(uint8_t key_1, uint8_t key_2)
 
 static void paint(void)
 {
+	//MSPAINT
 	keyboard(0x15, 0x08);
 	keyboard(0x10, 0x00);
 	keyboard(0x16, 0x00);
@@ -132,9 +134,17 @@ static void paint(void)
 	keyboard(0x17, 0x00);
 	keyboard(0x28, 0x00);
 
-	HAL_Delay(300);
+	HAL_Delay(200);
 
-	//kreslienie smilika
+	step(50, 50, 0);
+	circle(50);
+	step(0, 0, 0);
+	step(20, 20, 0);
+	circle(5);
+	step(0, 0, 0);
+	step(40, 40, 0);
+    circle(5);
+	//...kreslienie smilika, nevedel som si to predstavit
 }
 /* USER CODE END 0 */
 
@@ -182,6 +192,7 @@ int main(void)
 		if(HAL_GPIO_ReadPin(BTN1_GPIO_Port, BTN1_Pin) == 1)
 		{
 			circle(60);
+			//paint();
 
 		}
 	}
