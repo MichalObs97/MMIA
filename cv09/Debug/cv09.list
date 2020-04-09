@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_macro  00025770  00000000  00000000  00036a40  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   0000db5a  00000000  00000000  0005c1b0  2**0
+ 17 .debug_line   0000db34  00000000  00000000  0005c1b0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000d5093  00000000  00000000  00069d0a  2**0
+ 18 .debug_str    000d5093  00000000  00000000  00069ce4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0013ed9d  2**0
+ 19 .comment      0000007b  00000000  00000000  0013ed77  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000389c  00000000  00000000  0013ee18  2**2
+ 20 .debug_frame  0000389c  00000000  00000000  0013edf4  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1270,145 +1270,145 @@ void circle(uint16_t radius)
  8000f40:	61bb      	str	r3, [r7, #24]
 	uint8_t param_x, param_y,i;
 
-	for(i = 0; i < ANGLE_STEP; i++)
- 8000f42:	2300      	movs	r3, #0
- 8000f44:	75fb      	strb	r3, [r7, #23]
- 8000f46:	e09e      	b.n	8001086 <circle+0x166>
+	while(i < ANGLE_STEP)
+ 8000f42:	e09e      	b.n	8001082 <circle+0x162>
 	{
 		x = radius * cos((2 * M_PI * i) / (ANGLE_STEP));
- 8000f48:	88fb      	ldrh	r3, [r7, #6]
- 8000f4a:	4618      	mov	r0, r3
- 8000f4c:	f7ff faa2 	bl	8000494 <__aeabi_i2d>
- 8000f50:	4604      	mov	r4, r0
- 8000f52:	460d      	mov	r5, r1
- 8000f54:	7dfb      	ldrb	r3, [r7, #23]
- 8000f56:	4618      	mov	r0, r3
- 8000f58:	f7ff fa9c 	bl	8000494 <__aeabi_i2d>
- 8000f5c:	a34e      	add	r3, pc, #312	; (adr r3, 8001098 <circle+0x178>)
- 8000f5e:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000f62:	f7ff fb01 	bl	8000568 <__aeabi_dmul>
- 8000f66:	4602      	mov	r2, r0
- 8000f68:	460b      	mov	r3, r1
- 8000f6a:	4610      	mov	r0, r2
- 8000f6c:	4619      	mov	r1, r3
- 8000f6e:	f04f 0200 	mov.w	r2, #0
- 8000f72:	4b4b      	ldr	r3, [pc, #300]	; (80010a0 <circle+0x180>)
- 8000f74:	f7ff fc22 	bl	80007bc <__aeabi_ddiv>
- 8000f78:	4602      	mov	r2, r0
- 8000f7a:	460b      	mov	r3, r1
- 8000f7c:	ec43 2b17 	vmov	d7, r2, r3
- 8000f80:	eeb0 0a47 	vmov.f32	s0, s14
- 8000f84:	eef0 0a67 	vmov.f32	s1, s15
- 8000f88:	f006 faa2 	bl	80074d0 <cos>
- 8000f8c:	ec53 2b10 	vmov	r2, r3, d0
- 8000f90:	4620      	mov	r0, r4
- 8000f92:	4629      	mov	r1, r5
- 8000f94:	f7ff fae8 	bl	8000568 <__aeabi_dmul>
- 8000f98:	4603      	mov	r3, r0
- 8000f9a:	460c      	mov	r4, r1
- 8000f9c:	4618      	mov	r0, r3
- 8000f9e:	4621      	mov	r1, r4
- 8000fa0:	f7ff fdc4 	bl	8000b2c <__aeabi_d2f>
- 8000fa4:	4603      	mov	r3, r0
- 8000fa6:	613b      	str	r3, [r7, #16]
+ 8000f44:	88fb      	ldrh	r3, [r7, #6]
+ 8000f46:	4618      	mov	r0, r3
+ 8000f48:	f7ff faa4 	bl	8000494 <__aeabi_i2d>
+ 8000f4c:	4604      	mov	r4, r0
+ 8000f4e:	460d      	mov	r5, r1
+ 8000f50:	7dfb      	ldrb	r3, [r7, #23]
+ 8000f52:	4618      	mov	r0, r3
+ 8000f54:	f7ff fa9e 	bl	8000494 <__aeabi_i2d>
+ 8000f58:	a34f      	add	r3, pc, #316	; (adr r3, 8001098 <circle+0x178>)
+ 8000f5a:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8000f5e:	f7ff fb03 	bl	8000568 <__aeabi_dmul>
+ 8000f62:	4602      	mov	r2, r0
+ 8000f64:	460b      	mov	r3, r1
+ 8000f66:	4610      	mov	r0, r2
+ 8000f68:	4619      	mov	r1, r3
+ 8000f6a:	f04f 0200 	mov.w	r2, #0
+ 8000f6e:	4b4c      	ldr	r3, [pc, #304]	; (80010a0 <circle+0x180>)
+ 8000f70:	f7ff fc24 	bl	80007bc <__aeabi_ddiv>
+ 8000f74:	4602      	mov	r2, r0
+ 8000f76:	460b      	mov	r3, r1
+ 8000f78:	ec43 2b17 	vmov	d7, r2, r3
+ 8000f7c:	eeb0 0a47 	vmov.f32	s0, s14
+ 8000f80:	eef0 0a67 	vmov.f32	s1, s15
+ 8000f84:	f006 faa4 	bl	80074d0 <cos>
+ 8000f88:	ec53 2b10 	vmov	r2, r3, d0
+ 8000f8c:	4620      	mov	r0, r4
+ 8000f8e:	4629      	mov	r1, r5
+ 8000f90:	f7ff faea 	bl	8000568 <__aeabi_dmul>
+ 8000f94:	4603      	mov	r3, r0
+ 8000f96:	460c      	mov	r4, r1
+ 8000f98:	4618      	mov	r0, r3
+ 8000f9a:	4621      	mov	r1, r4
+ 8000f9c:	f7ff fdc6 	bl	8000b2c <__aeabi_d2f>
+ 8000fa0:	4603      	mov	r3, r0
+ 8000fa2:	613b      	str	r3, [r7, #16]
 		y = radius * sin((2 * M_PI * i) / (ANGLE_STEP));
- 8000fa8:	88fb      	ldrh	r3, [r7, #6]
- 8000faa:	4618      	mov	r0, r3
- 8000fac:	f7ff fa72 	bl	8000494 <__aeabi_i2d>
- 8000fb0:	4604      	mov	r4, r0
- 8000fb2:	460d      	mov	r5, r1
- 8000fb4:	7dfb      	ldrb	r3, [r7, #23]
- 8000fb6:	4618      	mov	r0, r3
- 8000fb8:	f7ff fa6c 	bl	8000494 <__aeabi_i2d>
- 8000fbc:	a336      	add	r3, pc, #216	; (adr r3, 8001098 <circle+0x178>)
- 8000fbe:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000fc2:	f7ff fad1 	bl	8000568 <__aeabi_dmul>
- 8000fc6:	4602      	mov	r2, r0
- 8000fc8:	460b      	mov	r3, r1
- 8000fca:	4610      	mov	r0, r2
- 8000fcc:	4619      	mov	r1, r3
- 8000fce:	f04f 0200 	mov.w	r2, #0
- 8000fd2:	4b33      	ldr	r3, [pc, #204]	; (80010a0 <circle+0x180>)
- 8000fd4:	f7ff fbf2 	bl	80007bc <__aeabi_ddiv>
- 8000fd8:	4602      	mov	r2, r0
- 8000fda:	460b      	mov	r3, r1
- 8000fdc:	ec43 2b17 	vmov	d7, r2, r3
- 8000fe0:	eeb0 0a47 	vmov.f32	s0, s14
- 8000fe4:	eef0 0a67 	vmov.f32	s1, s15
- 8000fe8:	f006 fb02 	bl	80075f0 <sin>
- 8000fec:	ec53 2b10 	vmov	r2, r3, d0
- 8000ff0:	4620      	mov	r0, r4
- 8000ff2:	4629      	mov	r1, r5
- 8000ff4:	f7ff fab8 	bl	8000568 <__aeabi_dmul>
- 8000ff8:	4603      	mov	r3, r0
- 8000ffa:	460c      	mov	r4, r1
- 8000ffc:	4618      	mov	r0, r3
- 8000ffe:	4621      	mov	r1, r4
- 8001000:	f7ff fd94 	bl	8000b2c <__aeabi_d2f>
- 8001004:	4603      	mov	r3, r0
- 8001006:	60fb      	str	r3, [r7, #12]
+ 8000fa4:	88fb      	ldrh	r3, [r7, #6]
+ 8000fa6:	4618      	mov	r0, r3
+ 8000fa8:	f7ff fa74 	bl	8000494 <__aeabi_i2d>
+ 8000fac:	4604      	mov	r4, r0
+ 8000fae:	460d      	mov	r5, r1
+ 8000fb0:	7dfb      	ldrb	r3, [r7, #23]
+ 8000fb2:	4618      	mov	r0, r3
+ 8000fb4:	f7ff fa6e 	bl	8000494 <__aeabi_i2d>
+ 8000fb8:	a337      	add	r3, pc, #220	; (adr r3, 8001098 <circle+0x178>)
+ 8000fba:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8000fbe:	f7ff fad3 	bl	8000568 <__aeabi_dmul>
+ 8000fc2:	4602      	mov	r2, r0
+ 8000fc4:	460b      	mov	r3, r1
+ 8000fc6:	4610      	mov	r0, r2
+ 8000fc8:	4619      	mov	r1, r3
+ 8000fca:	f04f 0200 	mov.w	r2, #0
+ 8000fce:	4b34      	ldr	r3, [pc, #208]	; (80010a0 <circle+0x180>)
+ 8000fd0:	f7ff fbf4 	bl	80007bc <__aeabi_ddiv>
+ 8000fd4:	4602      	mov	r2, r0
+ 8000fd6:	460b      	mov	r3, r1
+ 8000fd8:	ec43 2b17 	vmov	d7, r2, r3
+ 8000fdc:	eeb0 0a47 	vmov.f32	s0, s14
+ 8000fe0:	eef0 0a67 	vmov.f32	s1, s15
+ 8000fe4:	f006 fb04 	bl	80075f0 <sin>
+ 8000fe8:	ec53 2b10 	vmov	r2, r3, d0
+ 8000fec:	4620      	mov	r0, r4
+ 8000fee:	4629      	mov	r1, r5
+ 8000ff0:	f7ff faba 	bl	8000568 <__aeabi_dmul>
+ 8000ff4:	4603      	mov	r3, r0
+ 8000ff6:	460c      	mov	r4, r1
+ 8000ff8:	4618      	mov	r0, r3
+ 8000ffa:	4621      	mov	r1, r4
+ 8000ffc:	f7ff fd96 	bl	8000b2c <__aeabi_d2f>
+ 8001000:	4603      	mov	r3, r0
+ 8001002:	60fb      	str	r3, [r7, #12]
 		param_x = round (x - sx);
- 8001008:	ed97 7a04 	vldr	s14, [r7, #16]
- 800100c:	edd7 7a07 	vldr	s15, [r7, #28]
- 8001010:	ee77 7a67 	vsub.f32	s15, s14, s15
- 8001014:	ee17 0a90 	vmov	r0, s15
- 8001018:	f7ff fa4e 	bl	80004b8 <__aeabi_f2d>
- 800101c:	4603      	mov	r3, r0
- 800101e:	460c      	mov	r4, r1
- 8001020:	ec44 3b10 	vmov	d0, r3, r4
- 8001024:	f006 fa98 	bl	8007558 <round>
- 8001028:	ec54 3b10 	vmov	r3, r4, d0
- 800102c:	4618      	mov	r0, r3
- 800102e:	4621      	mov	r1, r4
- 8001030:	f7ff fd5c 	bl	8000aec <__aeabi_d2uiz>
- 8001034:	4603      	mov	r3, r0
- 8001036:	72fb      	strb	r3, [r7, #11]
+ 8001004:	ed97 7a04 	vldr	s14, [r7, #16]
+ 8001008:	edd7 7a07 	vldr	s15, [r7, #28]
+ 800100c:	ee77 7a67 	vsub.f32	s15, s14, s15
+ 8001010:	ee17 0a90 	vmov	r0, s15
+ 8001014:	f7ff fa50 	bl	80004b8 <__aeabi_f2d>
+ 8001018:	4603      	mov	r3, r0
+ 800101a:	460c      	mov	r4, r1
+ 800101c:	ec44 3b10 	vmov	d0, r3, r4
+ 8001020:	f006 fa9a 	bl	8007558 <round>
+ 8001024:	ec54 3b10 	vmov	r3, r4, d0
+ 8001028:	4618      	mov	r0, r3
+ 800102a:	4621      	mov	r1, r4
+ 800102c:	f7ff fd5e 	bl	8000aec <__aeabi_d2uiz>
+ 8001030:	4603      	mov	r3, r0
+ 8001032:	72fb      	strb	r3, [r7, #11]
 		param_y = round (y - sy);
- 8001038:	ed97 7a03 	vldr	s14, [r7, #12]
- 800103c:	edd7 7a06 	vldr	s15, [r7, #24]
- 8001040:	ee77 7a67 	vsub.f32	s15, s14, s15
- 8001044:	ee17 0a90 	vmov	r0, s15
- 8001048:	f7ff fa36 	bl	80004b8 <__aeabi_f2d>
- 800104c:	4603      	mov	r3, r0
- 800104e:	460c      	mov	r4, r1
- 8001050:	ec44 3b10 	vmov	d0, r3, r4
- 8001054:	f006 fa80 	bl	8007558 <round>
- 8001058:	ec54 3b10 	vmov	r3, r4, d0
- 800105c:	4618      	mov	r0, r3
- 800105e:	4621      	mov	r1, r4
- 8001060:	f7ff fd44 	bl	8000aec <__aeabi_d2uiz>
- 8001064:	4603      	mov	r3, r0
- 8001066:	72bb      	strb	r3, [r7, #10]
+ 8001034:	ed97 7a03 	vldr	s14, [r7, #12]
+ 8001038:	edd7 7a06 	vldr	s15, [r7, #24]
+ 800103c:	ee77 7a67 	vsub.f32	s15, s14, s15
+ 8001040:	ee17 0a90 	vmov	r0, s15
+ 8001044:	f7ff fa38 	bl	80004b8 <__aeabi_f2d>
+ 8001048:	4603      	mov	r3, r0
+ 800104a:	460c      	mov	r4, r1
+ 800104c:	ec44 3b10 	vmov	d0, r3, r4
+ 8001050:	f006 fa82 	bl	8007558 <round>
+ 8001054:	ec54 3b10 	vmov	r3, r4, d0
+ 8001058:	4618      	mov	r0, r3
+ 800105a:	4621      	mov	r1, r4
+ 800105c:	f7ff fd46 	bl	8000aec <__aeabi_d2uiz>
+ 8001060:	4603      	mov	r3, r0
+ 8001062:	72bb      	strb	r3, [r7, #10]
 
 		sx = x;
- 8001068:	693b      	ldr	r3, [r7, #16]
- 800106a:	61fb      	str	r3, [r7, #28]
+ 8001064:	693b      	ldr	r3, [r7, #16]
+ 8001066:	61fb      	str	r3, [r7, #28]
 		sy = y;
- 800106c:	68fb      	ldr	r3, [r7, #12]
- 800106e:	61bb      	str	r3, [r7, #24]
+ 8001068:	68fb      	ldr	r3, [r7, #12]
+ 800106a:	61bb      	str	r3, [r7, #24]
+		i++;
+ 800106c:	7dfb      	ldrb	r3, [r7, #23]
+ 800106e:	3301      	adds	r3, #1
+ 8001070:	75fb      	strb	r3, [r7, #23]
 
 		step(param_x, param_y, true);
- 8001070:	f997 300b 	ldrsb.w	r3, [r7, #11]
- 8001074:	f997 100a 	ldrsb.w	r1, [r7, #10]
- 8001078:	2201      	movs	r2, #1
- 800107a:	4618      	mov	r0, r3
- 800107c:	f7ff ff26 	bl	8000ecc <step>
-	for(i = 0; i < ANGLE_STEP; i++)
- 8001080:	7dfb      	ldrb	r3, [r7, #23]
- 8001082:	3301      	adds	r3, #1
- 8001084:	75fb      	strb	r3, [r7, #23]
- 8001086:	7dfb      	ldrb	r3, [r7, #23]
- 8001088:	2b31      	cmp	r3, #49	; 0x31
- 800108a:	f67f af5d 	bls.w	8000f48 <circle+0x28>
+ 8001072:	f997 300b 	ldrsb.w	r3, [r7, #11]
+ 8001076:	f997 100a 	ldrsb.w	r1, [r7, #10]
+ 800107a:	2201      	movs	r2, #1
+ 800107c:	4618      	mov	r0, r3
+ 800107e:	f7ff ff25 	bl	8000ecc <step>
+	while(i < ANGLE_STEP)
+ 8001082:	7dfb      	ldrb	r3, [r7, #23]
+ 8001084:	2b31      	cmp	r3, #49	; 0x31
+ 8001086:	f67f af5d 	bls.w	8000f44 <circle+0x24>
 	}
 
 
 }
- 800108e:	bf00      	nop
- 8001090:	3720      	adds	r7, #32
- 8001092:	46bd      	mov	sp, r7
- 8001094:	bdb0      	pop	{r4, r5, r7, pc}
- 8001096:	bf00      	nop
+ 800108a:	bf00      	nop
+ 800108c:	3720      	adds	r7, #32
+ 800108e:	46bd      	mov	sp, r7
+ 8001090:	bdb0      	pop	{r4, r5, r7, pc}
+ 8001092:	bf00      	nop
+ 8001094:	f3af 8000 	nop.w
  8001098:	54442d18 	.word	0x54442d18
  800109c:	401921fb 	.word	0x401921fb
  80010a0:	40490000 	.word	0x40490000

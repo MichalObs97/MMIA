@@ -5257,28 +5257,28 @@ OUTPUT(cv09.elf elf32-littlearm)
  .debug_macro   0x0000000000025369       0x1c USB_DEVICE/App/usbd_desc.o
  .debug_macro   0x0000000000025385      0x3eb USB_DEVICE/Target/usbd_conf.o
 
-.debug_line     0x0000000000000000     0xdb5a
- .debug_line    0x0000000000000000      0xc3f Core/Src/main.o
- .debug_line    0x0000000000000c3f      0x779 Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x00000000000013b8      0x800 Core/Src/stm32f4xx_it.o
- .debug_line    0x0000000000001bb8      0x6aa Core/Src/sysmem.o
- .debug_line    0x0000000000002262      0x765 Core/Src/system_stm32f4xx.o
- .debug_line    0x00000000000029c7       0x85 Core/Startup/startup_stm32f429zitx.o
- .debug_line    0x0000000000002a4c      0x973 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_line    0x00000000000033bf      0xa73 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_line    0x0000000000003e32      0x956 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000004788      0xcc6 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.o
- .debug_line    0x000000000000544e      0x7a8 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.o
- .debug_line    0x0000000000005bf6      0x9a7 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_line    0x000000000000659d     0x105d Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
- .debug_line    0x00000000000075fa      0xe79 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
- .debug_line    0x0000000000008473      0xc47 Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.o
- .debug_line    0x00000000000090ba      0xd00 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
- .debug_line    0x0000000000009dba      0xdf3 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
- .debug_line    0x000000000000abad      0xb7e Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
- .debug_line    0x000000000000b72b      0xb4d USB_DEVICE/App/usb_device.o
- .debug_line    0x000000000000c278      0xbb2 USB_DEVICE/App/usbd_desc.o
- .debug_line    0x000000000000ce2a      0xd30 USB_DEVICE/Target/usbd_conf.o
+.debug_line     0x0000000000000000     0xdb34
+ .debug_line    0x0000000000000000      0xc19 Core/Src/main.o
+ .debug_line    0x0000000000000c19      0x779 Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000001392      0x800 Core/Src/stm32f4xx_it.o
+ .debug_line    0x0000000000001b92      0x6aa Core/Src/sysmem.o
+ .debug_line    0x000000000000223c      0x765 Core/Src/system_stm32f4xx.o
+ .debug_line    0x00000000000029a1       0x85 Core/Startup/startup_stm32f429zitx.o
+ .debug_line    0x0000000000002a26      0x973 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_line    0x0000000000003399      0xa73 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000000000003e0c      0x956 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000004762      0xcc6 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.o
+ .debug_line    0x0000000000005428      0x7a8 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.o
+ .debug_line    0x0000000000005bd0      0x9a7 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000000000006577     0x105d Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_line    0x00000000000075d4      0xe79 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
+ .debug_line    0x000000000000844d      0xc47 Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.o
+ .debug_line    0x0000000000009094      0xd00 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
+ .debug_line    0x0000000000009d94      0xdf3 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
+ .debug_line    0x000000000000ab87      0xb7e Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
+ .debug_line    0x000000000000b705      0xb4d USB_DEVICE/App/usb_device.o
+ .debug_line    0x000000000000c252      0xbb2 USB_DEVICE/App/usbd_desc.o
+ .debug_line    0x000000000000ce04      0xd30 USB_DEVICE/Target/usbd_conf.o
 
 .debug_str      0x0000000000000000    0xd5093
  .debug_str     0x0000000000000000    0xd16db Core/Src/main.o
