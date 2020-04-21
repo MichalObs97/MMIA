@@ -63,7 +63,6 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 		sprintf(s, "Komunikacia OK\n");
 		netconn_write(conn, s, strlen(s), NETCONN_COPY);
 	}
-
 	else if (strcasecmp(token, "STATUS") == 0)
 	{
 		token = strtok_r(cmd, " ",&saveptr);
@@ -81,8 +80,6 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 		sprintf(s, "Status: LED1 %s LED2 %s LED3 %s", LED1_status, LED2_status,LED3_status);
 		netconn_write(conn, s, strlen(s), NETCONN_COPY);
 	}
-
-
 	else if (strcasecmp(token, "LED1") == 0)
 	{
 		token = strtok_r(cmd, " ",&saveptr);
@@ -95,7 +92,6 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 			HAL_GPIO_WritePin(LD1_GPIO_Port,LD1_Pin,0);
 		}
 	}
-
 	else if (strcasecmp(token, "LED2") == 0)
 	{
 		token = strtok_r(cmd, " ",&saveptr);
