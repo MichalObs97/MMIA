@@ -65,7 +65,7 @@ void circle(uint16_t radius);
 
 void step(int8_t x, int8_t y, _Bool btn)
 {
-	uint8_t buff[4];
+	uint8_t buff[5];
 	buff[0] = 0x02;
 	if (btn) buff[1] = 0x01;
 	else     buff[1] = 0x00;
@@ -89,8 +89,8 @@ void circle(uint16_t radius)
 		param_x = round (x - sx);
 		param_y = round (y - sy);
 
-		sx = x;
-		sy = y;
+		sx = param_x;
+		sy = param_y;
 		i++;
 
 		step(param_x, param_y, true);

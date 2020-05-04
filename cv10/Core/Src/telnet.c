@@ -56,7 +56,7 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 {
 	char *token, *saveptr;
 	static char s[CHAR_BUFFER];
-	token = strtok_r(cmd, " ",&saveptr);
+	token = strtok_r(NULL, " ",&saveptr);
 
 	if (strcasecmp(token, "HELLO") == 0)
 	{
@@ -65,7 +65,7 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 	}
 	else if (strcasecmp(token, "STATUS") == 0)
 	{
-		token = strtok_r(cmd, " ",&saveptr);
+		token = strtok_r(NULL, " ",&saveptr);
 		static char LED1_status[CHAR_BUFFER], LED2_status[CHAR_BUFFER],LED3_status[CHAR_BUFFER];
 
 		if(HAL_GPIO_ReadPin(LD1_GPIO_Port, LD1_Pin)==1) strcpy(LED1_status, "Zapnuta");
@@ -94,7 +94,7 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 	}
 	else if (strcasecmp(token, "LED2") == 0)
 	{
-		token = strtok_r(cmd, " ",&saveptr);
+		token = strtok_r(NULL, " ",&saveptr);
 		if (strcasecmp(token, "LED2 - ON") == 0)
 		{
 			HAL_GPIO_WritePin(LD2_GPIO_Port,LD2_Pin,1);
@@ -107,7 +107,7 @@ static void telnet_process_command(char *cmd, struct netconn *conn)
 	}
 	else if (strcasecmp(token, "LED3") == 0)
 	{
-		token = strtok_r(cmd, " ",&saveptr);
+		token = strtok_r(NULL, " ",&saveptr);
 		if (strcasecmp(token, "LED3 - ON") == 0)
 		{
 			HAL_GPIO_WritePin(LD3_GPIO_Port,LD3_Pin,1);
@@ -139,7 +139,7 @@ static void telnet_thread(void *arg)
 	struct netconn *conn, *newconn;
 	err_t err, accept_err;
 	struct netbuf *buf;
-	void *data;
+	uint8_t *data;
 	u16_t len;
 
 	LWIP_UNUSED_ARG(arg);
@@ -172,7 +172,7 @@ static void telnet_thread(void *arg)
 						{
 
 							netbuf_data(buf, (void**)&data, &len);
-							while (len--) telnet_byte_available((uintptr_t)data++, newconn);
+							while (len--) telnet_byte_available(*(uint8_t*)data++, newconn);
 
 						}
 						while (netbuf_next(buf) >= 0);

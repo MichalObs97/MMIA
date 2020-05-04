@@ -40,8 +40,8 @@ cv08.bin \
 all: cv08.elf secondary-outputs
 
 # Tool invocations
-cv08.elf: $(OBJS) $(USER_OBJS) D:\School\MMIA1\MMIA\cv08\STM32F429ZITX_FLASH.ld
-	arm-none-eabi-gcc -o "cv08.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\School\MMIA1\MMIA\cv08\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cv08.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+cv08.elf: $(OBJS) $(USER_OBJS) D:\School\MMIA\MMIA\cv08\STM32F429ZITX_FLASH.ld
+	arm-none-eabi-gcc -o "cv08.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\School\MMIA\MMIA\cv08\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cv08.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

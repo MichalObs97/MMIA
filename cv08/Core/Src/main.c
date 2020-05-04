@@ -34,6 +34,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define TIMEOUT 5000
+#define code_length 5
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -46,8 +47,7 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 static volatile int key = -1;
-static const uint8_t code[5] = { 7, 9, 3, 2, 12 };
-static uint8_t NMBR_pressed[5];
+static const uint8_t code[code_length] = { 7, 9, 3, 2, 12 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -97,6 +97,9 @@ int main(void)
 	MX_TIM2_Init();
 	/* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim2);
+	static uint8_t NMBR_pressed[code_length];
+	uint8_t i = 0, right_combination = 0;
+	uint32_t delay = 0;
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -107,13 +110,13 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		uint8_t i = 0, right_combination = 0;
-		uint32_t delay = 0;
+
 		if (key != -1)                                               //stlacenie tlacitka
 		{
 			delay = HAL_GetTick();
 			NMBR_pressed[i] = key;
 			printf("Stlacene cislo: %d\n", key);
+			i++;
 
 			if (NMBR_pressed[i] == code[i])                          //postupna kontrola kodu
 			{
@@ -127,11 +130,10 @@ int main(void)
 				printf("Zle cislo kodu \n");
 			}
 
-			i++;
 
 			if (i == 5)
 			{
-				if (right_combination == 5)
+				if (right_combination == code_length)
 				{
 					printf("Spravna kombinacia \n");                 //spravna kombinacia
 					HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
@@ -143,6 +145,7 @@ int main(void)
 				printf("Nulovanie \n");
 
 			}
+			HAL_Delay(200);
 			key = -1;
 		}
 
