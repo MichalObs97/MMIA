@@ -151,11 +151,26 @@ static void uart_process_command(char *data)
 	}
 	else if (strcasecmp(token, "WRITE") == 0)
 	{
-		//
+		token = strtok(NULL, " ");
+		adr = atoi(token);
+		token = strtok(NULL, " ");
+		uint8_t data_w = atoi(token);
+
+		HAL_I2C_Mem_Write(&hi2c1, EEPROM_ADDR, adr, I2C_MEMADD_SIZE_16BIT, &data_w, 1,1000);
+		while (HAL_I2C_IsDeviceReady(&hi2c1, EEPROM_ADDR, 300, 1000) == HAL_TIMEOUT) {}
+		printf("OK\n");
 	}
 	else if (strcasecmp(token, "DUMP") == 0)
 	{
-		//
+		uint16_t data = 0;
+
+		for (adr = 0; adr < 0x10; adr++)
+		{
+			HAL_I2C_Mem_Read(&hi2c1, EEPROM_ADDR, adr, I2C_MEMADD_SIZE_16BIT, &data, 1,1000);
+			printf("%02X ", data);
+			if (adr == 0x07) printf("\n");
+		}
+		printf("\n");
 	}
 }
 /* USER CODE END 0 */
